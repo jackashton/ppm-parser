@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest",
-    "lint": "eslint"
+    "lint": "eslint 'src'"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +17,6 @@
     "eslint": "~8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-vitest": "^0.3.26",
     "prettier": "^3.4.2",
     "typescript": "~5.4.5",
     "vitest": "^2.1.8"

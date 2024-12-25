@@ -1,6 +1,5 @@
 {
   "root": true,
-  "ignorePatterns": ["!**/*"],
   "plugins": ["prettier", "vitest"],
   "parser": "@typescript-eslint/parser",
   "extends": [
@@ -10,7 +9,7 @@
   ],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": ["**/*.{js,jsx,ts,tsx}"],
       "rules": {
         "prettier/prettier": "error"
       }
