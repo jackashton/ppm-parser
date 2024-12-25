@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import parsePPM from './parsePPM';
+import { parsePPM } from './parsePPM';
 
 /**
  * Sample P6 PPM binary data (5x5 pixels, all white)
