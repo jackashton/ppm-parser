@@ -66,3 +66,5 @@ export const parsePPM = (data: Uint8Array) => {
     throw new Error('Unsupported PPM format: ' + format);
   }
 };
+
+export default parsePPM;

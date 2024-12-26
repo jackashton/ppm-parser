@@ -1,7 +1,8 @@
 {
   "name": "ppm-parser",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "vitest",
@@ -17,6 +18,7 @@
     "eslint": "~8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vitest": "~0.5.4",
     "prettier": "^3.4.2",
     "typescript": "~5.4.5",
     "vitest": "^2.1.8"

@@ -1,2 +1,4 @@
 export * from './parsePPM';
-export { parsePPM as default } from './parsePPM';
+
+import parsePPM from './parsePPM';
+export default parsePPM;
