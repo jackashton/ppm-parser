@@ -30,9 +30,9 @@ This library provides an easy-to-use API for parsing PPM images. It supports bot
 ```typescript
 import parsePPM from 'ppm-parser';
 
-// Load your PPM data into a Uint8Array (e.g. from a file)
+// Load your PPM data into a Uint8Array (e.g., from a file)
 const ppmData = new Uint8Array([
-  // Example data for demonstration purposes
+    // Example data for demonstration purposes
 ]);
 
 // Parse the PPM data
@@ -51,22 +51,24 @@ console.log('Pixel Values:', values);
 
 ## API Reference
 
-### `parsePPM(data: Uint8Array): { width: number, height: number, values: Uint8Array }`
+### `parsePPM(data: Uint8Array): PPMImage`
 - **Description**: Automatically detects and parses PPM data in either P3 or P6 format.
 - **Parameters**:
     - `data`: A `Uint8Array` containing the PPM file's binary data.
-- **Returns**: An object containing:
+- **Returns**: A `PPMImage` instance containing:
     - `width`: The width of the image.
     - `height`: The height of the image.
-    - `values`: A `Uint8Array` with interleaved RGB values.
+    - `pixelData`: A `Uint8Array` with interleaved RGB values.
+    - `maxColorValue`: The maximum color value of the PPM file.
+    - `format`: The PPM file format ("P3" or "P6").
 
-### `parsePPMP3(data: Uint8Array): { width: number, height: number, values: Uint8Array }`
+### `parsePPMP3(data: Uint8Array): PPMImage`
 - **Description**: Parses PPM files in P3 format (plain text).
 - **Parameters**:
     - `data`: A `Uint8Array` containing the PPM file's binary data.
 - **Returns**: Same as `parsePPM`.
 
-### `parsePPMP6(data: Uint8Array): { width: number, height: number, values: Uint8Array }`
+### `parsePPMP6(data: Uint8Array): PPMImage`
 - **Description**: Parses PPM files in P6 format (binary).
 - **Parameters**:
     - `data`: A `Uint8Array` containing the PPM file's binary data.
@@ -74,20 +76,37 @@ console.log('Pixel Values:', values);
 
 ---
 
-## Extending the Package
+## Extended Features
 
-If you wish to extend or modify the library (e.g., add support for additional PPM formats or enhance error handling), follow the steps below.
+### `PPMImage` Class
+The library now provides a `PPMImage` class to encapsulate parsed image data. This class includes the following:
 
+#### Properties:
+- `width`: The width of the image in pixels.
+- `height`: The height of the image in pixels.
+- `pixelData`: The raw pixel data as a `Uint8Array`. Each pixel consists of three consecutive values (R, G, B).
+- `maxColorValue`: The maximum color value of the PPM file (e.g., 255 for 8-bit color).
+- `format`: The PPM file format ("P3" or "P6").
 
-### Development Setup
+#### Methods:
+- `aspectRatio(): number`
+    - Returns the aspect ratio of the image (width / height).
+- `pixelCount: number`
+    - The total number of pixels in the image (width * height).
+- `getPixel(x: number, y: number): { r: number; g: number; b: number }`
+    - Retrieves the RGB color values of the pixel at the specified coordinates.
+
+---
+
+## Development Setup
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/ppm-parser.git
+   git clone https://github.com/jackashton/ppm-parser.git
    cd ppm-parser
    ```
-   
-2. **Install development dependencies**:
+
+2. **Install Development Dependencies**:
    ```bash
    pnpm install
    ```
@@ -112,12 +131,16 @@ If you wish to extend or modify the library (e.g., add support for additional PP
 
 ### Adding a New Parser
 If you want to support additional formats (e.g., a hypothetical P7 format), follow these steps:
+
 1. **Create a New Parser Function**:
    Add a new function, e.g., `parsePPMP7`, in the `parsePPM.ts` file.
+
 2. **Update the Main Function**:
    Modify the `parsePPM` function to detect and handle the new format.
+
 3. **Write Tests**:
    Add comprehensive unit tests for the new format in the `parsePPM.test.ts` file.
+
 4. **Export the Function**:
    Ensure your new parser is exported in `index.ts`.
 
