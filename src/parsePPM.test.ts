@@ -32,7 +32,8 @@ describe('PPM Parser', () => {
 
     expect(result.width).toBe(4);
     expect(result.height).toBe(4);
-    expect(result.values).toEqual(new Uint8Array(48).fill(255)); // 4x4 white pixels
+    expect(result.maxColorValue).toBe(255);
+    expect(result.pixelData).toEqual(new Uint8Array(48).fill(255)); // 4x4 white pixels
   });
 
   it('should correctly parse P3 PPM format', () => {
@@ -40,7 +41,8 @@ describe('PPM Parser', () => {
 
     expect(result.width).toBe(2);
     expect(result.height).toBe(2);
-    expect(result.values).toEqual(new Uint8Array(12).fill(0)); // 2x2 black pixels
+    expect(result.maxColorValue).toBe(255);
+    expect(result.pixelData).toEqual(new Uint8Array(12).fill(0)); // 2x2 black pixels
   });
 
   it('should throw an error for unsupported PPM format', () => {
